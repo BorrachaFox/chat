@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client'
 
 const serverUrl = (
-  'http://localhost:3000'  || 'https://chat-borracha.herokuapp.com/'
+  'https://chat-borracha.herokuapp.com/'
 )
 
 const socket = io(serverUrl)
