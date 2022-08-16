@@ -1,5 +1,10 @@
 import { io } from 'socket.io-client'
-const socket = io('http://192.168.0.53:3000')
+
+const serverUrl = (
+  'http://localhost:3000'  || 'https://chat-borracha.herokuapp.com/'
+)
+
+const socket = io(serverUrl)
 
 import { renderMessage } from './utils'
 
