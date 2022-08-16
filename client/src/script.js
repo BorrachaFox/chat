@@ -1,50 +1,50 @@
-import { io } from 'socket.io-client'
-import { loadPages, renderMessage, randomColor } from './utils'
+import { socket } from './server'
+import { loadPages, renderMessage, randomColor, delay, setWriting } from './utils'
 
-const socket = io('http://192.168.0.53:3333')
 let username = ''
 let color = ''
+let writing = false
 
-socket.on('receivedMessage', (message) => {
-  renderMessage(message)
+const messageInput = document.querySelector('input[name=message]')
+const usernameInput = document.querySelector('input[name=username]')
+const chatPage = document.querySelector('#chat')
+const loginPage = document.querySelector('#login')
+
+messageInput.addEventListener('input', () => {
+  let isEmpty = messageInput.value
+  if(!isEmpty && writing) return writing = setWriting(username, false) 
+  if(isEmpty && !writing) writing = setWriting(username, true)
 })
 
-socket.on('previousMessages', (messages) => {
-  for (let message of messages) {
-    renderMessage(message)
-  }
-})
+messageInput.addEventListener('keyup', delay(() => {
+  if(writing) writing = setWriting(username, false)
+}, 2000))
 
-document.querySelector('#login').addEventListener('submit', (event) => {
+loginPage.addEventListener('submit', (event) => {
   event.preventDefault()
   
-  username = document.querySelector('input[name=username]').value
+  username = usernameInput.value
   color = randomColor()
   
   loadPages(username)
 })
 
-document.querySelector('#chat').addEventListener('submit', (event) => {
+chatPage.addEventListener('submit', (event) => {
   event.preventDefault()
 
   let author = username
-  let authorColor = color
-  console.log('color: ' + color)
-  let messageInput = document.querySelector('input[name=message]')
   let message = messageInput.value
 
   if(author.length && message.length) {
     var messageObject = {
-      author: author,
+      author: username,
       message: message,
-      color: authorColor
+      color: color
     }
     renderMessage(messageObject)
-
-    messageInput.value = ''
+    
     socket.emit('sendMessage', messageObject)
   }
+  messageInput.value = ''
+  setWriting(username, false)
 })
-
-randomColor()
-/* loadPages() */

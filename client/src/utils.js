@@ -1,3 +1,7 @@
+import { socket } from "./server"
+
+// App Functions
+
 function loadPages(user) {
   if(user) {
     document.querySelector('#login-page').style.display = "none"
@@ -6,6 +10,23 @@ function loadPages(user) {
     document.querySelector('#login-page').style.display = "block"
     document.querySelector('#chat-page').style.display = "none"
   }
+}
+
+function setWriting(username, state) {
+  const input = document.querySelector('input[name=message]')
+
+  if(state) { 
+    input.style.outline = '1px solid #7DCEA0 '
+  } else {
+    input.style.outline = 'none'
+  }
+
+  socket.emit('typingState', {
+    username: username,
+    typing: state
+  })
+
+  return state
 }
 
 function renderMessage(message) {
@@ -17,8 +38,11 @@ function renderMessage(message) {
   document.querySelector('.messages').innerHTML += htmlText
 }
 
+// Helper Functions
+
 function randomColor() {
-  let hexlist = '456789abcd'
+  
+  let hexlist = '0123456789abcd'
   let color = '#'
 
   for (let i = 0; i < 6; i++) {
@@ -28,4 +52,12 @@ function randomColor() {
   return color
 }
 
-export { loadPages, renderMessage, randomColor }
+function delay(fn, ms) {
+  var timer = 0;
+  return function(...args) {
+    clearTimeout(timer)
+    timer = setTimeout(fn.bind(this, ...args), ms || 0)
+  }
+}
+
+export { loadPages, renderMessage, randomColor, delay, setWriting }

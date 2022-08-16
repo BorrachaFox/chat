@@ -1,7 +1,7 @@
 import { IMessage } from './types';
 import { Server } from 'socket.io';
 
-const io = new Server(3333, {
+const io = new Server(3000, {
   cors: {
     origin: [
       'http://localhost:8080',
@@ -20,6 +20,11 @@ io.on('connection', (socket) => {
   socket.on('sendMessage', (data: IMessage) => {
     messages.push(data);
     socket.broadcast.emit('receivedMessage', data)
+  })
+
+  socket.on('typingState', (data) => {
+    console.log(data)
+    socket.broadcast.emit('isTyping', data)
   })
 
   socket.on('disconnect', () => {
