@@ -70,6 +70,7 @@ button:hover {
   padding: 20px;
   overflow-x: hidden;
   overflow-y: unset;
+  word-break:break-all;
 }
 
 .messages::-webkit-scrollbar {

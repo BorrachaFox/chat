@@ -1,11 +1,20 @@
-import { IMessage } from './types';
+import express from 'express';
 import { Server } from 'socket.io';
+import cors from 'cors';
 
-const io = new Server(3000, {
+import { IMessage } from './types';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
+app.use(cors());
+
+const srv = app.listen(PORT, () => console.log(`Online on port ${PORT}`))
+
+const io = new Server(srv, {
   cors: {
     origin: [
       'http://localhost:8080',
-      'http://192.168.0.53:8080'
+      'https://chat-theta.vercel.app/'
     ],
   },
 })
