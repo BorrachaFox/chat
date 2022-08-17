@@ -2,13 +2,20 @@
 
 html, body {
   height: 100%;
+  font-size: 16px;
   font-family: 'Roboto', sans-serif;
+  padding: 6px 18px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.content {
+  height: 100%;
+  width: 100%;
 }
 
 #chat-page {
@@ -36,8 +43,13 @@ html, body {
   flex-direction: column;
 }
 
+.login-title {
+  text-align: center;
+}
+
 input {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   border: 1px solid #ddd;
   height: 50px;
   padding: 0 20px;
@@ -46,7 +58,8 @@ input {
 }
 
 button {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   height: 50px;
   font-size: 14px;
   background: #069;
@@ -63,7 +76,8 @@ button:hover {
 }
 
 .messages {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   height: 400px;
   margin: 20px 0;
   border: 1px solid #ddd;

@@ -8,29 +8,31 @@
   <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-  <div id="chat-page">
-    <form id="chat">
-      <div class="messages"></div>
-      <input 
-        type="text" 
-        name="message"
-        placeholder="Write your message..." 
-        autocomplete="off"
-      >
-      <button type="submit">Enviar</button>
-    </form>
-  </div>
-  <div id="login-page">
-    <form id="login">
-      <h1>How you want to be called ?</h1> <br>
-      <input 
-        type="text" 
-        name="username" 
-        placeholder="Username" 
-        autocomplete="off"
-      >
-    </form>
-  </div>
+  <div class="content">
+    <div id="chat-page">
+      <form id="chat">
+        <div class="messages"></div>
+        <input 
+          type="text" 
+          name="message"
+          placeholder="Write your message..." 
+          autocomplete="off"
+        >
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+    <div id="login-page">
+      <form id="login">
+        <h2 class="login-title">How you want to be called ?</h2> <br>
+        <input 
+          type="text" 
+          name="username" 
+          placeholder="Username" 
+          autocomplete="off"
+        >
+      </form>
+    </div>
+  </div> 
   
   <script src="src/script.js" type="module"></script>
   
