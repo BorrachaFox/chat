@@ -31,6 +31,20 @@ html, body {
   flex-direction: column;
 }
 
+.chat-status {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 14px;
+  outline: none;
+  color: green;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #login-page {
   height: 100%;
 }
@@ -51,7 +65,7 @@ input {
   width: 100%;
   max-width: 600px;
   border: 1px solid #ddd;
-  height: 50px;
+  min-height: 40px;
   padding: 0 20px;
   font-size: 14px;
   outline: none;
@@ -79,7 +93,7 @@ button:hover {
   width: 100%;
   max-width: 600px;
   height: 400px;
-  margin: 20px 0;
+  margin: 10px 0;
   border: 1px solid #ddd;
   padding: 20px;
   overflow-x: hidden;

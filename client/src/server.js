@@ -1,8 +1,6 @@
 import { io } from 'socket.io-client'
-
-const serverUrl = (
-  'https://chat-borracha.herokuapp.com/'
-)
+import { renderTyping, renderOnline } from './utils'
+const serverUrl = import.meta.env.VITE_SERVER_URL
 
 const socket = io(serverUrl)
 
@@ -19,7 +17,11 @@ socket.on('previousMessages', (messages) => {
 })
 
 socket.on('isTyping', (data) => {
-  console.log(data)
+  renderTyping(data)
+})
+
+socket.on('countOnline', (data) => {
+  renderOnline(data)
 })
 
 export { socket }

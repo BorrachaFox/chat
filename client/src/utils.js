@@ -2,7 +2,7 @@ import { socket } from "./server"
 
 // App Functions
 
-function loadPages(user) {
+export function loadPages(user) {
   if(user) {
     document.querySelector('#login-page').style.display = "none"
     document.querySelector('#chat-page').style.display = "block"
@@ -12,11 +12,11 @@ function loadPages(user) {
   }
 }
 
-function setWriting(username, state) {
+export function setWriting(username, state) {
   const input = document.querySelector('input[name=message]')
 
   if(state) { 
-    input.style.outline = '1px solid #7DCEA0 '
+    input.style.outline = '1px solid #7DCEA0'
   } else {
     input.style.outline = 'none'
   }
@@ -29,7 +29,18 @@ function setWriting(username, state) {
   return state
 }
 
-function renderMessage(message) {
+export function renderTyping(data) {
+  let htmlText = ''
+  if(data.typing) htmlText = `${data.username} is typing`
+
+  document.querySelector('.typing').innerHTML = htmlText
+}
+
+export function renderOnline(n) {
+  document.querySelector('.online').innerHTML = `${n} online`
+}
+
+export function renderMessage(message) {
   const htmlText = `
     <div class="message">
       <strong><span style="color:${message.color || 'black'}">${message.author}</span></strong>: ${message.message}
@@ -40,7 +51,7 @@ function renderMessage(message) {
 
 // Helper Functions
 
-function randomColor() {
+export function randomColor() {
   
   let hexlist = '0123456789abcd'
   let color = '#'
@@ -52,7 +63,7 @@ function randomColor() {
   return color
 }
 
-function delay(fn, ms) {
+export function delay(fn, ms) {
   var timer = 0;
   return function(...args) {
     clearTimeout(timer)
@@ -60,4 +71,4 @@ function delay(fn, ms) {
   }
 }
 
-export { loadPages, renderMessage, randomColor, delay, setWriting }
+

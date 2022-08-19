@@ -11,9 +11,9 @@ const chatPage = document.querySelector('#chat')
 const loginPage = document.querySelector('#login')
 
 messageInput.addEventListener('input', () => {
-  let isEmpty = messageInput.value
-  if(!isEmpty && writing) return writing = setWriting(username, false) 
-  if(isEmpty && !writing) writing = setWriting(username, true)
+  let hasText = messageInput.value
+  if (hasText && !writing) writing = setWriting(username, true)
+  if (!hasText && writing) writing = setWriting(username, false)
 })
 
 messageInput.addEventListener('keyup', delay(() => {
@@ -45,6 +45,10 @@ chatPage.addEventListener('submit', (event) => {
     
     socket.emit('sendMessage', messageObject)
   }
-  messageInput.value = ''
-  setWriting(username, false)
+  
+  let hasText = messageInput.value
+  if(hasText) {
+    writing = setWriting(username, false)
+    messageInput.value = ''
+  }
 })
