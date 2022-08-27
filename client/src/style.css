@@ -4,7 +4,6 @@ html, body {
   height: 100%;
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
-  padding: 6px 18px;
 }
 
 * {
@@ -20,7 +19,7 @@ html, body {
 
 #chat-page {
   height: 100%;
-  display: none;
+  /* display: none; */
 }
 
 #chat-page > #chat {
@@ -61,28 +60,32 @@ html, body {
   text-align: center;
 }
 
-input {
+.bottom {
   width: 100%;
   max-width: 600px;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 80%;
   border: 1px solid #ddd;
-  min-height: 40px;
+  height: 40px;
   padding: 0 20px;
   font-size: 14px;
   outline: none;
 }
 
 button {
-  width: 100%;
-  max-width: 600px;
-  height: 50px;
+  width: 20%;
+  height: 40px;
   font-size: 14px;
   background: #069;
   border: #ddd;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   font-weight: bold;
   color: #FFF;
-  margin-top: 10px;
 }
 
 button:hover {
