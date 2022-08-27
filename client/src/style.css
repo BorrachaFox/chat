@@ -69,6 +69,7 @@ html, body {
 
 input {
   width: 80%;
+  max-width: 600px;
   border: 1px solid #ddd;
   height: 40px;
   padding: 0 20px;
